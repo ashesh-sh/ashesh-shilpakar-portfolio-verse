@@ -21,7 +21,7 @@ export function Hero() {
           >
             <Avatar className="w-96 h-96 border-4 border-cyber-blue/30 shadow-lg shadow-cyan-400/20">
               <AvatarImage 
-                src="/lovable-uploads/06441f01-1582-4cdb-9ab7-2a6c8a7b7dfc.png" 
+                src="/lovable-uploads/3cb44c36-47ff-4cc2-a0f1-49f9b5c07213.png" 
                 alt="Ashesh Shilpakar"
                 className="object-cover"
               />
