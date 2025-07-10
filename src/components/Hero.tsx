@@ -1,6 +1,7 @@
 
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 export function Hero() {
   return (
@@ -12,6 +13,24 @@ export function Hero() {
           transition={{ duration: 0.8 }}
           className="space-y-6"
         >
+          <motion.div
+            className="flex justify-center mb-8"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+          >
+            <Avatar className="w-32 h-32 border-4 border-cyber-blue/30 shadow-lg shadow-cyan-400/20">
+              <AvatarImage 
+                src="/lovable-uploads/ac34c3b5-5cb2-4903-836f-ddd0b4c53a86.png" 
+                alt="Ashesh Shilpakar"
+                className="object-cover"
+              />
+              <AvatarFallback className="text-2xl font-bold bg-gradient-to-r from-cyber-blue to-neon-purple text-white">
+                AS
+              </AvatarFallback>
+            </Avatar>
+          </motion.div>
+
           <motion.h1 
             className="text-5xl md:text-7xl font-bold gradient-text mb-4"
             initial={{ opacity: 0, scale: 0.9 }}
