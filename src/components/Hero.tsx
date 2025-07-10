@@ -36,9 +36,10 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            10+ years crafting immersive experiences with Unity • VR/AR • Multiplayer • Mobile Games
+            Versatile technology enthusiast with over a decade of hands-on experience in VR and XR technologies. 
+            Proven ability to manage multiple teams and complex projects concurrently while maintaining high precision and efficiency.
             <br />
-            <span className="text-cyber-blue">Based in Nepal 🇳🇵</span>
+            <span className="text-cyber-blue">Based in Bhaktapur, Nepal 🇳🇵</span>
           </motion.p>
 
           <motion.div

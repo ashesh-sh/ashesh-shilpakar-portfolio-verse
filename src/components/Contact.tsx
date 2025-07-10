@@ -1,14 +1,21 @@
 
 import { motion } from 'framer-motion';
-import { Mail, Github, Linkedin, MapPin, Send } from 'lucide-react';
+import { Mail, Github, Linkedin, MapPin, Send, Phone } from 'lucide-react';
 
 const contactLinks = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'ashesh.shilpakar@email.com',
-    href: 'mailto:ashesh.shilpakar@email.com',
+    value: 'ashesh.sh777@gmail.com',
+    href: 'mailto:ashesh.sh777@gmail.com',
     color: 'hover:text-cyber-blue'
+  },
+  {
+    icon: Phone,
+    label: 'Phone',
+    value: '+977-9841271784',
+    href: 'tel:+9779841271784',
+    color: 'hover:text-electric-green'
   },
   {
     icon: Linkedin,
@@ -27,9 +34,9 @@ const contactLinks = [
   {
     icon: MapPin,
     label: 'Location',
-    value: 'Kathmandu, Nepal',
+    value: 'Suryabinayak, Bhaktapur, Nepal',
     href: '#',
-    color: 'hover:text-electric-green'
+    color: 'hover:text-neon-purple'
   }
 ];
 
@@ -52,7 +59,7 @@ export function Contact() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {contactLinks.map((link, index) => (
             <motion.a
               key={link.label}
@@ -97,7 +104,7 @@ export function Contact() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cyber-blue to-neon-purple text-white font-semibold rounded-lg shadow-lg hover:shadow-cyan-400/25 transition-all duration-300"
-            onClick={() => window.open('mailto:ashesh.shilpakar@email.com', '_blank')}
+            onClick={() => window.open('mailto:ashesh.sh777@gmail.com', '_blank')}
           >
             <Send className="w-5 h-5" />
             Get In Touch

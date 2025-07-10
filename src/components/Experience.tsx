@@ -6,37 +6,54 @@ const experiences = [
   {
     company: 'AL Octagon IT Services',
     role: 'Game Engineering Manager',
-    period: '2022 - Present',
-    location: 'Nepal',
-    description: 'Leading cross-platform game development initiatives, managing technical teams, and architecting scalable multiplayer systems using Unity and custom backend solutions.',
+    period: 'March 2023 - Present',
+    location: 'Abu Dhabi',
+    description: 'Leading multiple multiplayer mobile game development projects with focus on real-time gameplay, cryptocurrency payment systems, and in-app update functionality.',
     achievements: [
-      'Managed team of 8+ developers across multiple game projects',
-      'Implemented CI/CD pipelines reducing deployment time by 60%',
-      'Led VR multiplayer simulation projects with real-time networking'
+      'Led development of multiple multiplayer mobile games with real-time gameplay',
+      'Integrated in-game cryptocurrency payment systems',
+      'Lead, mentor, and support engineering teams (Game Developers, Graphics Designers, Backend Developers, QA)',
+      'Developed lightweight framework for slot games with seamless backend API integration',
+      'Ensure code quality, performance optimization, and adherence to technical standards'
     ]
   },
   {
     company: 'Paracosma Nepal Pvt. Ltd.',
-    role: 'Senior Game Developer',
-    period: '2019 - 2022',
-    location: 'Nepal',
-    description: 'Specialized in Unity development for mobile platforms, focusing on monetization strategies, real-time multiplayer mechanics, and backend API integration.',
+    role: 'Lead Game Developer',
+    period: 'April 2021 - February 2023',
+    location: 'Kathmandu',
+    description: 'Specialized in VR/XR development, optimizing virtual environments and developing AI-focused simulations for various applications.',
     achievements: [
-      'Developed 5+ published mobile games with 100K+ downloads',
-      'Implemented real-time slot game mechanics with server synchronization',
-      'Optimized game performance achieving 60fps on mid-range devices'
+      'Identified and fixed VR hardware/software problems for smooth virtual environments',
+      'Optimized 3D models for VR compatibility and performance',
+      'Developed Unity virtual environment for weather/lighting simulation supporting AI model training',
+      'Created cognitive exercise games in VR for elderly and individuals with disabilities',
+      'Worked on VR Multiplayer games and simulations'
+    ]
+  },
+  {
+    company: 'Paracosma Nepal Pvt. Ltd.',
+    role: 'Academy Game Developer',
+    period: 'June 2018 - April 2021',
+    location: 'Kathmandu',
+    description: 'Focused on AR development and interactive simulations, creating engaging experiences for various platforms and audiences.',
+    achievements: [
+      'Developed face filters for AARP events using AR Studio (Spark AR)',
+      'Designed complex interactions and gameplay mechanics in artificial environments',
+      'Developed various VR simulations, training programs, and games',
+      'Worked on VR Multiplayer Simulations with interactive 3D avatars'
     ]
   },
   {
     company: 'Chimpvine Nepal',
-    role: 'Unity Developer',
-    period: '2017 - 2019',
-    location: 'Nepal', 
-    description: 'Focused on educational game development, creating interactive learning experiences that combine entertainment with pedagogical effectiveness.',
+    role: 'Game Developer',
+    period: 'September 2020 - April 2022',
+    location: 'Kathmandu (Remote)',
+    description: 'Specialized in educational game development, creating learning experiences that combine entertainment with pedagogical effectiveness.',
     achievements: [
-      'Created interactive educational games for K-12 students',
-      'Implemented adaptive learning algorithms in game mechanics',
-      'Collaborated with educators to design curriculum-aligned content'
+      'Designed educational games for different student levels in Unity',
+      'Developed engaging gameplay and UI that enhance learning experience',
+      'Guided junior developers in transforming concepts into functional games'
     ]
   }
 ];
@@ -56,7 +73,7 @@ export function Experience() {
             Experience Timeline
           </h2>
           <p className="text-xl text-gray-400">
-            A decade of crafting digital experiences
+            A decade of crafting digital experiences and immersive technologies
           </p>
         </motion.div>
 
