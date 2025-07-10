@@ -19,13 +19,13 @@ export function Hero() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
-            <Avatar className="w-32 h-32 border-4 border-cyber-blue/30 shadow-lg shadow-cyan-400/20">
+            <Avatar className="w-96 h-96 border-4 border-cyber-blue/30 shadow-lg shadow-cyan-400/20">
               <AvatarImage 
-                src="/lovable-uploads/ac34c3b5-5cb2-4903-836f-ddd0b4c53a86.png" 
+                src="/lovable-uploads/06441f01-1582-4cdb-9ab7-2a6c8a7b7dfc.png" 
                 alt="Ashesh Shilpakar"
                 className="object-cover"
               />
-              <AvatarFallback className="text-2xl font-bold bg-gradient-to-r from-cyber-blue to-neon-purple text-white">
+              <AvatarFallback className="text-6xl font-bold bg-gradient-to-r from-cyber-blue to-neon-purple text-white">
                 AS
               </AvatarFallback>
             </Avatar>
