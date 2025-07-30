@@ -1,8 +1,7 @@
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Gamepad2, Smartphone, GraduationCap, ExternalLink, X, Play } from 'lucide-react';
 import { useState } from 'react';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 const projects = [
   {
@@ -108,7 +107,13 @@ const projects = [
 ];
 
 export function Projects() {
-  const [openPopover, setOpenPopover] = useState<string | null>(null);
+  const [selectedProject, setSelectedProject] = useState<string | null>(null);
+
+  const handleProjectClick = (projectTitle: string) => {
+    setSelectedProject(selectedProject === projectTitle ? null : projectTitle);
+  };
+
+  const selectedProjectData = projects.find(p => p.title === selectedProject);
 
   return (
     <section id="projects" className="section-padding bg-gradient-to-b from-transparent to-black/20">
@@ -128,7 +133,7 @@ export function Projects() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
@@ -139,7 +144,11 @@ export function Projects() {
               whileHover={{ y: -10 }}
               className="group relative"
             >
-              <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-8 h-full hover:border-cyan-400/30 transition-all duration-300 glow-border">
+              <div className={`bg-gray-900/50 backdrop-blur-sm border rounded-xl p-8 h-full transition-all duration-300 glow-border ${
+                selectedProject === project.title 
+                  ? 'border-cyan-400/50 shadow-lg shadow-cyan-400/20' 
+                  : 'border-gray-800 hover:border-cyan-400/30'
+              }`}>
                 <div className={`inline-flex p-4 rounded-lg bg-gradient-to-r ${project.color} mb-6`}>
                   <project.icon className="w-8 h-8 text-white" />
                 </div>
@@ -163,84 +172,97 @@ export function Projects() {
                   ))}
                 </div>
 
-                <Popover open={openPopover === project.title} onOpenChange={(open) => setOpenPopover(open ? project.title : null)}>
-                  <PopoverTrigger asChild>
-                    <motion.button
-                      className="inline-flex items-center gap-2 text-cyber-blue hover:text-white transition-colors font-semibold"
-                      whileHover={{ x: 5, scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      View Projects
-                      <ExternalLink className="w-4 h-4" />
-                    </motion.button>
-                  </PopoverTrigger>
-                  <PopoverContent 
-                    className="w-[520px] max-h-[600px] overflow-y-auto bg-gray-900/95 backdrop-blur-xl border-gray-700 z-50 shadow-2xl"
-                    align="center"
-                    sideOffset={10}
-                  >
-                    <motion.div 
-                      initial={{ opacity: 0, scale: 0.9, y: -20 }}
-                      animate={{ opacity: 1, scale: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.9, y: -20 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
-                      className="space-y-6"
-                    >
-                      <div className="flex items-center justify-between sticky top-0 bg-gray-900/95 backdrop-blur-xl pb-4 border-b border-gray-700">
-                        <h4 className="text-xl font-bold text-white">{project.title}</h4>
-                        <motion.button
-                          whileHover={{ scale: 1.1, rotate: 90 }}
-                          whileTap={{ scale: 0.9 }}
-                          onClick={() => setOpenPopover(null)}
-                          className="p-2 rounded-full hover:bg-gray-800 text-gray-400 hover:text-white transition-colors"
-                        >
-                          <X className="w-5 h-5" />
-                        </motion.button>
-                      </div>
-                      
-                      <div className="space-y-6">
-                        {project.details.map((detail, detailIndex) => (
-                          <motion.div 
-                            key={detailIndex} 
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.4, delay: detailIndex * 0.1 }}
-                            className="border border-gray-700 rounded-xl p-6 bg-gray-800/50 hover:bg-gray-800/70 transition-all duration-300 hover:border-cyan-400/30"
-                          >
-                            <div className="flex gap-6">
-                              <motion.div 
-                                whileHover={{ scale: 1.05 }}
-                                className="relative w-24 h-24 flex-shrink-0"
-                              >
-                                <img
-                                  src={detail.image}
-                                  alt={detail.title}
-                                  className="w-full h-full object-cover rounded-lg shadow-lg"
-                                />
-                                {detail.hasVideo && (
-                                  <motion.div 
-                                    whileHover={{ scale: 1.1 }}
-                                    className="absolute inset-0 flex items-center justify-center bg-black/60 rounded-lg cursor-pointer"
-                                  >
-                                    <Play className="w-8 h-8 text-cyan-400" />
-                                  </motion.div>
-                                )}
-                              </motion.div>
-                              <div className="flex-1">
-                                <h5 className="text-white font-bold text-lg mb-3">{detail.title}</h5>
-                                <p className="text-gray-300 leading-relaxed">{detail.description}</p>
-                              </div>
-                            </div>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  </PopoverContent>
-                </Popover>
+                <motion.button
+                  onClick={() => handleProjectClick(project.title)}
+                  className="inline-flex items-center gap-2 text-cyber-blue hover:text-white transition-colors font-semibold"
+                  whileHover={{ x: 5, scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {selectedProject === project.title ? 'Hide Projects' : 'View Projects'}
+                  <ExternalLink className="w-4 h-4" />
+                </motion.button>
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* Full-width dropdown panel */}
+        <AnimatePresence mode="wait">
+          {selectedProject && selectedProjectData && (
+            <motion.div
+              initial={{ opacity: 0, height: 0, y: -20 }}
+              animate={{ opacity: 1, height: 'auto', y: 0 }}
+              exit={{ opacity: 0, height: 0, y: -20 }}
+              transition={{ 
+                duration: 0.5, 
+                ease: [0.4, 0.0, 0.2, 1],
+                height: { duration: 0.4 }
+              }}
+              className="w-full overflow-hidden"
+            >
+              <div className="bg-gray-900/95 backdrop-blur-xl border border-gray-700 rounded-2xl p-8 shadow-2xl">
+                <div className="flex items-center justify-between mb-8">
+                  <motion.h4 
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className="text-3xl font-bold text-white"
+                  >
+                    {selectedProjectData.title}
+                  </motion.h4>
+                  <motion.button
+                    whileHover={{ scale: 1.1, rotate: 90 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => setSelectedProject(null)}
+                    className="p-3 rounded-full hover:bg-gray-800 text-gray-400 hover:text-white transition-colors"
+                  >
+                    <X className="w-6 h-6" />
+                  </motion.button>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {selectedProjectData.details.map((detail, detailIndex) => (
+                    <motion.div 
+                      key={detailIndex} 
+                      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      transition={{ 
+                        duration: 0.5, 
+                        delay: detailIndex * 0.1,
+                        ease: [0.4, 0.0, 0.2, 1]
+                      }}
+                      className="border border-gray-700 rounded-xl p-6 bg-gray-800/50 hover:bg-gray-800/70 transition-all duration-300 hover:border-cyan-400/30 hover:shadow-lg hover:shadow-cyan-400/10"
+                    >
+                      <div className="flex gap-6">
+                        <motion.div 
+                          whileHover={{ scale: 1.05 }}
+                          className="relative w-32 h-32 flex-shrink-0"
+                        >
+                          <img
+                            src={detail.image}
+                            alt={detail.title}
+                            className="w-full h-full object-cover rounded-lg shadow-lg"
+                          />
+                          {detail.hasVideo && (
+                            <motion.div 
+                              whileHover={{ scale: 1.1 }}
+                              className="absolute inset-0 flex items-center justify-center bg-black/60 rounded-lg cursor-pointer"
+                            >
+                              <Play className="w-10 h-10 text-cyan-400" />
+                            </motion.div>
+                          )}
+                        </motion.div>
+                        <div className="flex-1">
+                          <h5 className="text-white font-bold text-xl mb-4">{detail.title}</h5>
+                          <p className="text-gray-300 leading-relaxed text-base">{detail.description}</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
