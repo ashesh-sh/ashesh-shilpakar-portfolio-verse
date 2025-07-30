@@ -358,7 +358,7 @@ export function Projects() {
                          <div className="flex flex-col items-center">
                            <motion.div 
                              whileHover={{ scale: 1.05 }}
-                             className="relative w-full h-48 mb-4"
+                             className="relative w-36 h-52 mb-4 mx-auto"
                              onMouseEnter={() => handleImageHover(detail.title, detail.hoverImages)}
                              onMouseLeave={() => handleImageLeave(detail.title)}
                            >
