@@ -1,7 +1,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { Gamepad2, Smartphone, GraduationCap, ExternalLink, X, Play } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const projects = [
   {
@@ -20,6 +20,7 @@ const projects = [
       },
       {
         title: 'Shelter in Place',
+        url: 'https://store.steampowered.com/app/1112840/Shelter_in_Place/',
         description: 'Shelter in Place is an open-ended virtual reality game in which users are stuck indefinitely in a virtual mansion. With no escape, the only thing for the player to do is explore more than 15 rooms containing mini-games that can provide hours of entertainment for all interests and ages.',
         image: '/lovable-uploads/a961e910-0d50-4c47-b124-5f9da41b22db.png',
         hoverImages: [
@@ -27,6 +28,18 @@ const projects = [
           '/lovable-uploads/ecccf7ca-dcd6-49a7-930d-ccba30f36c33.png',
           '/lovable-uploads/04281d35-b00a-4c50-9ffe-1f4fe3c07d9e.png'
         ],
+        hasVideo: false
+      },
+      {
+        title: 'Equipment Operator Training',
+        description: 'Training new equipment operators is a prime use case for VR. Let them get familiar with new equipment in the safety of a simulated environment—without taking machines offline for training or risking expensive and dangerous incidents.',
+        image: '/lovable-uploads/639dcf2e-c777-4ce0-bced-335c22a85080.png',
+        hasVideo: false
+      },
+      {
+        title: 'VR Casual Games',
+        description: 'Developed VR 10+ casual brain stimulation/training games and 5+ board and card games in VR',
+        image: '/lovable-uploads/99433ce8-ee2c-4500-898c-3daadfec97b9.png',
         hasVideo: false
       }
     ]
@@ -114,6 +127,7 @@ const projects = [
 export function Projects() {
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
   const [hoveredImageIndex, setHoveredImageIndex] = useState<{[key: string]: number}>({});
+  const [hoverIntervals, setHoverIntervals] = useState<{[key: string]: NodeJS.Timeout}>({});
 
   const handleProjectClick = (projectTitle: string) => {
     setSelectedProject(selectedProject === projectTitle ? null : projectTitle);
@@ -123,21 +137,55 @@ export function Projects() {
 
   const handleImageHover = (detailTitle: string, hoverImages?: string[]) => {
     if (hoverImages && hoverImages.length > 0) {
-      const currentIndex = hoveredImageIndex[detailTitle] || 0;
-      const nextIndex = (currentIndex + 1) % hoverImages.length;
-      setHoveredImageIndex(prev => ({
+      // Clear any existing interval
+      if (hoverIntervals[detailTitle]) {
+        clearInterval(hoverIntervals[detailTitle]);
+      }
+      
+      // Start fast image cycling
+      const interval = setInterval(() => {
+        setHoveredImageIndex(prev => {
+          const currentIndex = prev[detailTitle] || 0;
+          const nextIndex = (currentIndex + 1) % hoverImages.length;
+          return {
+            ...prev,
+            [detailTitle]: nextIndex
+          };
+        });
+      }, 300); // Change image every 300ms for faster cycling
+      
+      setHoverIntervals(prev => ({
         ...prev,
-        [detailTitle]: nextIndex
+        [detailTitle]: interval
       }));
     }
   };
 
   const handleImageLeave = (detailTitle: string) => {
+    // Clear interval and reset to first image
+    if (hoverIntervals[detailTitle]) {
+      clearInterval(hoverIntervals[detailTitle]);
+      setHoverIntervals(prev => {
+        const newIntervals = { ...prev };
+        delete newIntervals[detailTitle];
+        return newIntervals;
+      });
+    }
+    
     setHoveredImageIndex(prev => ({
       ...prev,
       [detailTitle]: 0
     }));
   };
+
+  // Cleanup intervals on unmount
+  useEffect(() => {
+    return () => {
+      Object.values(hoverIntervals).forEach(interval => {
+        if (interval) clearInterval(interval);
+      });
+    };
+  }, [hoverIntervals]);
 
   const getCurrentImage = (detail: any) => {
     if (detail.hoverImages && hoveredImageIndex[detail.title] !== undefined) {
@@ -298,7 +346,19 @@ export function Projects() {
                           )}
                         </motion.div>
                         <div className="flex-1">
-                          <h5 className="text-white font-bold text-xl mb-4">{detail.title}</h5>
+                          <h5 className="text-white font-bold text-xl mb-2">{detail.title}</h5>
+                          {detail.url && (
+                            <motion.a
+                              href={detail.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 text-cyber-blue hover:text-white transition-colors text-sm mb-3 font-medium"
+                              whileHover={{ x: 3 }}
+                            >
+                              View on Steam
+                              <ExternalLink className="w-3 h-3" />
+                            </motion.a>
+                          )}
                           <p className="text-gray-300 leading-relaxed text-base">{detail.description}</p>
                         </div>
                       </div>
