@@ -21,7 +21,12 @@ const projects = [
       {
         title: 'Shelter in Place',
         description: 'Shelter in Place is an open-ended virtual reality game in which users are stuck indefinitely in a virtual mansion. With no escape, the only thing for the player to do is explore more than 15 rooms containing mini-games that can provide hours of entertainment for all interests and ages.',
-        image: '/lovable-uploads/ac34c3b5-5cb2-4903-836f-ddd0b4c53a86.png',
+        image: '/lovable-uploads/a961e910-0d50-4c47-b124-5f9da41b22db.png',
+        hoverImages: [
+          '/lovable-uploads/415b23f0-c198-4641-828f-3e1fa1e96ebb.png',
+          '/lovable-uploads/ecccf7ca-dcd6-49a7-930d-ccba30f36c33.png',
+          '/lovable-uploads/04281d35-b00a-4c50-9ffe-1f4fe3c07d9e.png'
+        ],
         hasVideo: false
       }
     ]
@@ -108,12 +113,39 @@ const projects = [
 
 export function Projects() {
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
+  const [hoveredImageIndex, setHoveredImageIndex] = useState<{[key: string]: number}>({});
 
   const handleProjectClick = (projectTitle: string) => {
     setSelectedProject(selectedProject === projectTitle ? null : projectTitle);
   };
 
   const selectedProjectData = projects.find(p => p.title === selectedProject);
+
+  const handleImageHover = (detailTitle: string, hoverImages?: string[]) => {
+    if (hoverImages && hoverImages.length > 0) {
+      const currentIndex = hoveredImageIndex[detailTitle] || 0;
+      const nextIndex = (currentIndex + 1) % hoverImages.length;
+      setHoveredImageIndex(prev => ({
+        ...prev,
+        [detailTitle]: nextIndex
+      }));
+    }
+  };
+
+  const handleImageLeave = (detailTitle: string) => {
+    setHoveredImageIndex(prev => ({
+      ...prev,
+      [detailTitle]: 0
+    }));
+  };
+
+  const getCurrentImage = (detail: any) => {
+    if (detail.hoverImages && hoveredImageIndex[detail.title] !== undefined) {
+      const index = hoveredImageIndex[detail.title];
+      return detail.hoverImages[index] || detail.image;
+    }
+    return detail.image;
+  };
 
   return (
     <section id="projects" className="section-padding bg-gradient-to-b from-transparent to-black/20">
@@ -236,11 +268,14 @@ export function Projects() {
                         <motion.div 
                           whileHover={{ scale: 1.05 }}
                           className="relative w-32 h-32 flex-shrink-0"
+                          onMouseEnter={() => handleImageHover(detail.title, detail.hoverImages)}
+                          onMouseLeave={() => handleImageLeave(detail.title)}
                         >
-                          <img
-                            src={detail.image}
+                          <motion.img
+                            src={getCurrentImage(detail)}
                             alt={detail.title}
                             className="w-full h-full object-cover rounded-lg shadow-lg"
+                            transition={{ duration: 0.3 }}
                           />
                           {detail.hasVideo && (
                             <motion.div 
