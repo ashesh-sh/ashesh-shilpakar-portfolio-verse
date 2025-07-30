@@ -56,15 +56,15 @@ export function Contact() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text mb-6">
             Let's Connect
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto px-4">
             Ready to collaborate on innovative game projects or discuss immersive technology solutions
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 px-4 sm:px-0">
           {contactLinks.map((link, index) => {
             const Component = link.clickable ? motion.a : motion.div;
             const props = link.clickable 
@@ -86,7 +86,7 @@ export function Contact() {
                 whileHover={link.clickable ? { scale: 1.05, y: -5 } : {}}
                 className={link.clickable ? "group cursor-pointer" : "group"}
               >
-                <div className={`bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6 h-full glow-border transition-all duration-300 ${
+                <div className={`bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-4 sm:p-6 h-full glow-border transition-all duration-300 ${
                   link.clickable ? 'hover:border-cyan-400/30' : ''
                 }`}>
                   <div className="flex items-center gap-4">

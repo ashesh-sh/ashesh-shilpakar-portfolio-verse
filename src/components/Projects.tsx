@@ -246,15 +246,15 @@ export function Projects() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text mb-6">
             Featured Projects
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto px-4">
             Exploring the boundaries of interactive entertainment and immersive technology
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8 px-4 sm:px-0">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
@@ -265,20 +265,20 @@ export function Projects() {
               whileHover={{ y: -10 }}
               className="group relative"
             >
-              <div className={`bg-gray-900/50 backdrop-blur-sm border rounded-xl p-8 h-full transition-all duration-300 glow-border ${
+              <div className={`bg-gray-900/50 backdrop-blur-sm border rounded-xl p-4 sm:p-6 md:p-8 h-full transition-all duration-300 glow-border ${
                 selectedProject === project.title 
                   ? 'border-cyan-400/50 shadow-lg shadow-cyan-400/20' 
                   : 'border-gray-800 hover:border-cyan-400/30'
               }`}>
-                <div className={`inline-flex p-4 rounded-lg bg-gradient-to-r ${project.color} mb-6`}>
-                  <project.icon className="w-8 h-8 text-white" />
+                <div className={`inline-flex p-3 sm:p-4 rounded-lg bg-gradient-to-r ${project.color} mb-4 sm:mb-6`}>
+                  <project.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                 </div>
                 
-                <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-cyber-blue transition-colors">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3 sm:mb-4 group-hover:text-cyber-blue transition-colors">
                   {project.title}
                 </h3>
                 
-                <p className="text-gray-400 leading-relaxed mb-6">
+                <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-4 sm:mb-6">
                   {project.description}
                 </p>
 
@@ -321,12 +321,12 @@ export function Projects() {
               }}
               className="w-full overflow-hidden"
             >
-              <div className="bg-gray-900/95 backdrop-blur-xl border border-gray-700 rounded-2xl p-8 shadow-2xl">
-                <div className="flex items-center justify-between mb-8">
+              <div className="bg-gray-900/95 backdrop-blur-xl border border-gray-700 rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl">
+                <div className="flex items-center justify-between mb-6 sm:mb-8">
                   <motion.h4 
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    className="text-3xl font-bold text-white"
+                    className="text-xl sm:text-2xl md:text-3xl font-bold text-white"
                   >
                     {selectedProjectData.title}
                   </motion.h4>
@@ -340,7 +340,7 @@ export function Projects() {
                   </motion.button>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                   {selectedProjectData.details.map((detail, detailIndex) => (
                     <motion.div 
                       key={detailIndex} 
@@ -351,14 +351,14 @@ export function Projects() {
                         delay: detailIndex * 0.1,
                         ease: [0.4, 0.0, 0.2, 1]
                       }}
-                       className="border border-gray-700 rounded-xl p-6 bg-gray-800/50 hover:bg-gray-800/70 transition-all duration-300 hover:border-cyan-400/30 hover:shadow-lg hover:shadow-cyan-400/10"
+                       className="border border-gray-700 rounded-xl p-3 sm:p-4 md:p-6 bg-gray-800/50 hover:bg-gray-800/70 transition-all duration-300 hover:border-cyan-400/30 hover:shadow-lg hover:shadow-cyan-400/10"
                      >
                        {selectedProjectData.title === 'Mobile Games' ? (
                          // Simple layout for Mobile Games - just image and title
                          <div className="flex flex-col items-center">
                            <motion.div 
                              whileHover={{ scale: 1.05 }}
-                             className="relative w-36 h-52 mb-4 mx-auto"
+                             className="relative w-28 h-40 sm:w-32 sm:h-44 md:w-36 md:h-52 mb-3 sm:mb-4 mx-auto"
                              onMouseEnter={() => handleImageHover(detail.title, detail.hoverImages)}
                              onMouseLeave={() => handleImageLeave(detail.title)}
                            >
@@ -369,14 +369,14 @@ export function Projects() {
                                transition={{ duration: 0.3 }}
                              />
                            </motion.div>
-                           <h5 className="text-white font-bold text-xl text-center">{detail.title}</h5>
+                           <h5 className="text-white font-bold text-base sm:text-lg md:text-xl text-center">{detail.title}</h5>
                          </div>
                        ) : (
                          // Original layout for other project types
-                         <div className="flex gap-6">
+                         <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
                            <motion.div 
                              whileHover={{ scale: 1.05 }}
-                             className="relative w-48 h-36 flex-shrink-0"
+                             className="relative w-full sm:w-32 md:w-40 lg:w-48 h-32 sm:h-24 md:h-28 lg:h-36 flex-shrink-0"
                              onMouseEnter={() => handleImageHover(detail.title, detail.hoverImages)}
                              onMouseLeave={() => handleImageLeave(detail.title)}
                            >
@@ -402,12 +402,12 @@ export function Projects() {
                                  whileHover={{ scale: 1.1 }}
                                  className="absolute inset-0 flex items-center justify-center bg-black/60 rounded-lg cursor-pointer"
                                >
-                                 <Play className="w-10 h-10 text-cyan-400" />
+                                 <Play className="w-8 h-8 sm:w-10 sm:h-10 text-cyan-400" />
                                </motion.div>
                              )}
                            </motion.div>
                            <div className="flex-1">
-                             <h5 className="text-white font-bold text-xl mb-2">{detail.title}</h5>
+                             <h5 className="text-white font-bold text-lg sm:text-xl mb-2">{detail.title}</h5>
                              {detail.url && (
                                <motion.a
                                  href={detail.url}
@@ -420,7 +420,7 @@ export function Projects() {
                                  <ExternalLink className="w-3 h-3" />
                                </motion.a>
                              )}
-                             <p className="text-gray-300 leading-relaxed text-base">{detail.description}</p>
+                             <p className="text-gray-300 leading-relaxed text-sm sm:text-base">{detail.description}</p>
                            </div>
                          </div>
                        )}
