@@ -15,7 +15,7 @@ const projects = [
       {
         title: 'VR Battleship - Multiplayer',
         description: 'VR multiplayer battle ship game built using Unity and Photon. Learnt about multiplayer game development, AI programming and optimization tricks for VR.',
-        image: '/lovable-uploads/06441f01-1582-4cdb-9ab7-2a6c8a7b7dfc.png',
+        video: '/battleShip.mp4',
         hasVideo: true
       },
       {
@@ -271,13 +271,24 @@ export function Projects() {
                           onMouseEnter={() => handleImageHover(detail.title, detail.hoverImages)}
                           onMouseLeave={() => handleImageLeave(detail.title)}
                         >
-                          <motion.img
-                            src={getCurrentImage(detail)}
-                            alt={detail.title}
-                            className="w-full h-full object-cover rounded-lg shadow-lg"
-                            transition={{ duration: 0.3 }}
-                          />
-                          {detail.hasVideo && (
+                          {detail.video ? (
+                            <video
+                              src={detail.video}
+                              className="w-full h-full object-cover rounded-lg shadow-lg"
+                              autoPlay
+                              loop
+                              muted
+                              playsInline
+                            />
+                          ) : (
+                            <motion.img
+                              src={getCurrentImage(detail)}
+                              alt={detail.title}
+                              className="w-full h-full object-cover rounded-lg shadow-lg"
+                              transition={{ duration: 0.3 }}
+                            />
+                          )}
+                          {detail.hasVideo && !detail.video && (
                             <motion.div 
                               whileHover={{ scale: 1.1 }}
                               className="absolute inset-0 flex items-center justify-center bg-black/60 rounded-lg cursor-pointer"
