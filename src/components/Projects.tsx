@@ -53,15 +53,24 @@ const projects = [
     tags: ['AR', 'Mobile', 'Spatial', 'Real-world'],
     details: [
       {
-        title: 'AR Pet Companion',
-        description: 'Virtual pet that interacts with your real environment using advanced AR tracking.',
-        image: '/lovable-uploads/3cb44c36-47ff-4cc2-a0f1-49f9b5c07213.png',
-        hasVideo: true
+        title: 'AR Games',
+        description: 'BasketBall AR, Bowling AR, and Fruits Ninja AR - Interactive AR sports and action games',
+        image: '/lovable-uploads/17efa573-57f9-456c-a433-e007a7c1a20e.png',
+        hoverImages: [
+          '/lovable-uploads/8b15b41c-24ff-44fb-ace2-e5914cca8cc1.png',
+          '/lovable-uploads/6a923b7a-3c5f-45bb-b90a-fa336aa0bbd8.png'
+        ],
+        hasVideo: false
       },
       {
-        title: 'AR Treasure Hunt',
-        description: 'Location-based treasure hunting game with real-world clues and AR rewards.',
-        image: '/lovable-uploads/06441f01-1582-4cdb-9ab7-2a6c8a7b7dfc.png',
+        title: 'AR Navigation',
+        description: 'Project in Progress - Location-based AR app using Unity, AR Foundation, and OSM that shows details about buildings or destinations when seen through the AR camera',
+        hasVideo: false
+      },
+      {
+        title: 'Machinery AR Breakdown View',
+        description: 'AR visualization for machinery components and breakdown analysis',
+        image: '/lovable-uploads/56accb1f-d45c-4aba-94c5-fc74347b265a.png',
         hasVideo: false
       }
     ]
