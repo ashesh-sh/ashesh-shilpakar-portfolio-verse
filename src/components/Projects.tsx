@@ -55,11 +55,11 @@ const projects = [
       {
         title: 'AR Games',
         description: 'BasketBall AR, Bowling AR, and Fruits Ninja AR - Interactive AR sports and action games',
-        image: '/lovable-uploads/17efa573-57f9-456c-a433-e007a7c1a20e.png',
+        image: '/lovable-uploads/a8f708f6-7564-4d62-879a-f12b0d7ae4cf.png',
         hoverImages: [
-          '/lovable-uploads/8b15b41c-24ff-44fb-ace2-e5914cca8cc1.png',
-          '/lovable-uploads/6a923b7a-3c5f-45bb-b90a-fa336aa0bbd8.png',
-          '/lovable-uploads/17efa573-57f9-456c-a433-e007a7c1a20e.png'
+          '/lovable-uploads/cdd2843d-6ed7-495c-86ba-b449b18422a4.png',
+          '/lovable-uploads/04c5864d-e3d7-4593-98eb-265aaf811b27.png',
+          '/lovable-uploads/a8f708f6-7564-4d62-879a-f12b0d7ae4cf.png'
         ],
         hasVideo: false
       },
