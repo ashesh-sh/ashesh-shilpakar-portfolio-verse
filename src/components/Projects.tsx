@@ -58,7 +58,8 @@ const projects = [
         image: '/lovable-uploads/17efa573-57f9-456c-a433-e007a7c1a20e.png',
         hoverImages: [
           '/lovable-uploads/8b15b41c-24ff-44fb-ace2-e5914cca8cc1.png',
-          '/lovable-uploads/6a923b7a-3c5f-45bb-b90a-fa336aa0bbd8.png'
+          '/lovable-uploads/6a923b7a-3c5f-45bb-b90a-fa336aa0bbd8.png',
+          '/lovable-uploads/17efa573-57f9-456c-a433-e007a7c1a20e.png'
         ],
         hasVideo: false
       },
