@@ -350,7 +350,7 @@ export function Projects() {
                       <div className="flex gap-6">
                         <motion.div 
                           whileHover={{ scale: 1.05 }}
-                          className="relative w-32 h-32 flex-shrink-0"
+                          className="relative w-48 h-36 flex-shrink-0"
                           onMouseEnter={() => handleImageHover(detail.title, detail.hoverImages)}
                           onMouseLeave={() => handleImageLeave(detail.title)}
                         >
