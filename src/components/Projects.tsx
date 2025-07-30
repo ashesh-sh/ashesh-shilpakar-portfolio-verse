@@ -132,27 +132,33 @@ const projects = [
     tags: ['Mobile', 'Board Games', 'Strategy', 'Classic'],
     details: [
       {
-        title: 'Chess Master',
-        description: 'Advanced chess game with AI opponents, online multiplayer, and puzzle modes.',
-        image: '/lovable-uploads/06441f01-1582-4cdb-9ab7-2a6c8a7b7dfc.png',
+        title: 'Chess',
+        image: '/lovable-uploads/a8bdaa95-4af1-4cdf-acbb-4c7e7e3d4b4c.png',
         hasVideo: false
       },
       {
-        title: 'Ludo Championship',
-        description: 'Classic Ludo game with modern graphics, tournaments, and social features.',
-        image: '/lovable-uploads/ac34c3b5-5cb2-4903-836f-ddd0b4c53a86.png',
-        hasVideo: true
-      },
-      {
-        title: 'Callbreak Pro',
-        description: 'Strategic card game with AI players, tournaments, and achievement system.',
-        image: '/lovable-uploads/3cb44c36-47ff-4cc2-a0f1-49f9b5c07213.png',
+        title: 'Ludo',
+        image: '/lovable-uploads/94668a36-a6fd-4371-a0ae-87713af1b930.png',
         hasVideo: false
       },
       {
-        title: 'Snake & Ladder Deluxe',
-        description: 'Enhanced version of the classic board game with power-ups and themes.',
-        image: '/lovable-uploads/06441f01-1582-4cdb-9ab7-2a6c8a7b7dfc.png',
+        title: 'Call Break',
+        image: '/lovable-uploads/c6fa2738-9fde-4f1f-8e0b-fe1ac7ead98f.png',
+        hasVideo: false
+      },
+      {
+        title: 'Snake and Ladder',
+        image: '/lovable-uploads/5cbfd0b0-81f5-4094-9f74-47fcb8e067f6.png',
+        hasVideo: false
+      },
+      {
+        title: 'Remember Rush',
+        image: '/lovable-uploads/c96b4482-b648-45b2-8bd7-e97fd6e4dfe4.png',
+        hasVideo: false
+      },
+      {
+        title: 'Space Catch',
+        image: '/lovable-uploads/7dbe4902-52e6-45ef-aaf8-3cdbe17d9a69.png',
         hasVideo: false
       }
     ]
@@ -345,58 +351,79 @@ export function Projects() {
                         delay: detailIndex * 0.1,
                         ease: [0.4, 0.0, 0.2, 1]
                       }}
-                      className="border border-gray-700 rounded-xl p-6 bg-gray-800/50 hover:bg-gray-800/70 transition-all duration-300 hover:border-cyan-400/30 hover:shadow-lg hover:shadow-cyan-400/10"
-                    >
-                      <div className="flex gap-6">
-                        <motion.div 
-                          whileHover={{ scale: 1.05 }}
-                          className="relative w-48 h-36 flex-shrink-0"
-                          onMouseEnter={() => handleImageHover(detail.title, detail.hoverImages)}
-                          onMouseLeave={() => handleImageLeave(detail.title)}
-                        >
-                          {detail.video ? (
-                            <video
-                              src={detail.video}
-                              className="w-full h-full object-cover rounded-lg shadow-lg"
-                              autoPlay
-                              loop
-                              muted
-                              playsInline
-                            />
-                          ) : (
-                            <motion.img
-                              src={getCurrentImage(detail)}
-                              alt={detail.title}
-                              className="w-full h-full object-cover rounded-lg shadow-lg"
-                              transition={{ duration: 0.3 }}
-                            />
-                          )}
-                          {detail.hasVideo && !detail.video && (
-                            <motion.div 
-                              whileHover={{ scale: 1.1 }}
-                              className="absolute inset-0 flex items-center justify-center bg-black/60 rounded-lg cursor-pointer"
-                            >
-                              <Play className="w-10 h-10 text-cyan-400" />
-                            </motion.div>
-                          )}
-                        </motion.div>
-                        <div className="flex-1">
-                          <h5 className="text-white font-bold text-xl mb-2">{detail.title}</h5>
-                          {detail.url && (
-                            <motion.a
-                              href={detail.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 text-cyber-blue hover:text-white transition-colors text-sm mb-3 font-medium"
-                              whileHover={{ x: 3 }}
-                            >
-                              View on Steam
-                              <ExternalLink className="w-3 h-3" />
-                            </motion.a>
-                          )}
-                          <p className="text-gray-300 leading-relaxed text-base">{detail.description}</p>
-                        </div>
-                      </div>
+                       className="border border-gray-700 rounded-xl p-6 bg-gray-800/50 hover:bg-gray-800/70 transition-all duration-300 hover:border-cyan-400/30 hover:shadow-lg hover:shadow-cyan-400/10"
+                     >
+                       {selectedProjectData.title === 'Mobile Games' ? (
+                         // Simple layout for Mobile Games - just image and title
+                         <div className="flex flex-col items-center">
+                           <motion.div 
+                             whileHover={{ scale: 1.05 }}
+                             className="relative w-full h-48 mb-4"
+                             onMouseEnter={() => handleImageHover(detail.title, detail.hoverImages)}
+                             onMouseLeave={() => handleImageLeave(detail.title)}
+                           >
+                             <motion.img
+                               src={getCurrentImage(detail)}
+                               alt={detail.title}
+                               className="w-full h-full object-cover rounded-lg shadow-lg"
+                               transition={{ duration: 0.3 }}
+                             />
+                           </motion.div>
+                           <h5 className="text-white font-bold text-xl text-center">{detail.title}</h5>
+                         </div>
+                       ) : (
+                         // Original layout for other project types
+                         <div className="flex gap-6">
+                           <motion.div 
+                             whileHover={{ scale: 1.05 }}
+                             className="relative w-48 h-36 flex-shrink-0"
+                             onMouseEnter={() => handleImageHover(detail.title, detail.hoverImages)}
+                             onMouseLeave={() => handleImageLeave(detail.title)}
+                           >
+                             {detail.video ? (
+                               <video
+                                 src={detail.video}
+                                 className="w-full h-full object-cover rounded-lg shadow-lg"
+                                 autoPlay
+                                 loop
+                                 muted
+                                 playsInline
+                               />
+                             ) : (
+                               <motion.img
+                                 src={getCurrentImage(detail)}
+                                 alt={detail.title}
+                                 className="w-full h-full object-cover rounded-lg shadow-lg"
+                                 transition={{ duration: 0.3 }}
+                               />
+                             )}
+                             {detail.hasVideo && !detail.video && (
+                               <motion.div 
+                                 whileHover={{ scale: 1.1 }}
+                                 className="absolute inset-0 flex items-center justify-center bg-black/60 rounded-lg cursor-pointer"
+                               >
+                                 <Play className="w-10 h-10 text-cyan-400" />
+                               </motion.div>
+                             )}
+                           </motion.div>
+                           <div className="flex-1">
+                             <h5 className="text-white font-bold text-xl mb-2">{detail.title}</h5>
+                             {detail.url && (
+                               <motion.a
+                                 href={detail.url}
+                                 target="_blank"
+                                 rel="noopener noreferrer"
+                                 className="inline-flex items-center gap-2 text-cyber-blue hover:text-white transition-colors text-sm mb-3 font-medium"
+                                 whileHover={{ x: 3 }}
+                               >
+                                 View on Steam
+                                 <ExternalLink className="w-3 h-3" />
+                               </motion.a>
+                             )}
+                             <p className="text-gray-300 leading-relaxed text-base">{detail.description}</p>
+                           </div>
+                         </div>
+                       )}
                     </motion.div>
                   ))}
                 </div>
