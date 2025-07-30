@@ -92,16 +92,34 @@ const projects = [
     tags: ['Education', 'WebGL', 'Learning', 'Interactive'],
     details: [
       {
-        title: 'Math Adventure Quest',
-        description: 'WebGL-based adventure game that teaches mathematics through interactive challenges.',
-        image: '/lovable-uploads/ac34c3b5-5cb2-4903-836f-ddd0b4c53a86.png',
+        title: 'Read & Ride',
+        description: 'Interactive educational game combining reading skills with adventure gameplay.',
+        video: '/read and ride.mp4',
         hasVideo: true
       },
       {
-        title: 'Science Lab Simulator',
-        description: 'Virtual laboratory environment for conducting safe chemistry experiments.',
-        image: '/lovable-uploads/3cb44c36-47ff-4cc2-a0f1-49f9b5c07213.png',
-        hasVideo: false
+        title: 'Chemical Sudoku',
+        description: 'Puzzle game that teaches chemistry concepts through sudoku-style challenges.',
+        video: '/chemical suduko.mp4',
+        hasVideo: true
+      },
+      {
+        title: 'Fruit Knock',
+        description: 'Educational game teaching math and coordination through fruit-based gameplay.',
+        video: '/fruit knock.mp4',
+        hasVideo: true
+      },
+      {
+        title: 'Opposite Words',
+        description: 'Language learning game focused on vocabulary and word relationships.',
+        video: '/opposite words.mp4',
+        hasVideo: true
+      },
+      {
+        title: 'Jumper',
+        description: 'Physics-based educational game teaching movement and problem-solving skills.',
+        video: '/jumper.mp4',
+        hasVideo: true
       }
     ]
   },
