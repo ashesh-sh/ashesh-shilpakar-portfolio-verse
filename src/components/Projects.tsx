@@ -4,28 +4,36 @@ import { Gamepad2, Smartphone, GraduationCap, ExternalLink } from 'lucide-react'
 
 const projects = [
   {
-    title: 'WebGL Games',
-    description: 'Interactive Unity WebGL builds showcasing advanced game mechanics, immersive environments, and cross-platform compatibility.',
+    title: 'VR Projects',
+    description: 'Immersive virtual reality experiences showcasing advanced VR mechanics, spatial interactions, and cutting-edge VR technology.',
     icon: Gamepad2,
     color: 'from-cyber-blue to-blue-500',
-    link: '#webgl-games',
-    tags: ['Unity', 'WebGL', '3D', 'Interactive']
+    link: '#vr-projects',
+    tags: ['VR', 'Unity', '3D', 'Immersive']
   },
   {
-    title: 'Published Mobile Games', 
-    description: 'Mobile slot and fish-style games with real-time mechanics, backend API integration, and engaging user experiences.',
+    title: 'AR Mini Games', 
+    description: 'Augmented reality mini-games featuring real-world integration, spatial tracking, and innovative AR gameplay mechanics.',
     icon: Smartphone,
     color: 'from-neon-purple to-purple-500',
-    link: '#mobile-games',
-    tags: ['Mobile', 'Real-time', 'API', 'Monetization']
+    link: '#ar-games',
+    tags: ['AR', 'Mobile', 'Spatial', 'Real-world']
   },
   {
     title: 'Educational Games',
-    description: 'Innovative learning experiences developed with Chimpvine, combining education with engaging gameplay mechanics.',
+    description: 'Innovative WebGL learning experiences developed with Chimpvine, combining education with engaging gameplay mechanics.',
     icon: GraduationCap,
     color: 'from-electric-green to-green-500',
     link: '#educational-games',
-    tags: ['Education', 'Unity', 'Learning', 'Interactive']
+    tags: ['Education', 'WebGL', 'Learning', 'Interactive']
+  },
+  {
+    title: 'Mobile Games',
+    description: 'Classic board and strategy games including Chess, Ludo, Callbreak, and Snake and Ladder with modern mobile interfaces.',
+    icon: Smartphone,
+    color: 'from-neo-pink to-pink-500',
+    link: '#mobile-games',
+    tags: ['Mobile', 'Board Games', 'Strategy', 'Classic']
   }
 ];
 
