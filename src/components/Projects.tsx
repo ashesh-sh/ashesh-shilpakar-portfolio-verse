@@ -53,14 +53,21 @@ const projects = [
     tags: ['AR', 'Mobile', 'Spatial', 'Real-world'],
     details: [
       {
-        title: 'AR Games',
-        description: 'BasketBall AR, Bowling AR, and Fruits Ninja AR - Interactive AR sports and action games',
+        title: 'BasketBall AR',
+        description: 'Interactive basketball shooting game in augmented reality',
         image: '/lovable-uploads/a8f708f6-7564-4d62-879a-f12b0d7ae4cf.png',
-        hoverImages: [
-          '/lovable-uploads/cdd2843d-6ed7-495c-86ba-b449b18422a4.png',
-          '/lovable-uploads/04c5864d-e3d7-4593-98eb-265aaf811b27.png',
-          '/lovable-uploads/a8f708f6-7564-4d62-879a-f12b0d7ae4cf.png'
-        ],
+        hasVideo: false
+      },
+      {
+        title: 'Bowling AR',
+        description: 'Virtual bowling experience with real-world physics',
+        image: '/lovable-uploads/cdd2843d-6ed7-495c-86ba-b449b18422a4.png',
+        hasVideo: false
+      },
+      {
+        title: 'Fruits Ninja AR',
+        description: 'Slice fruits in augmented reality with gesture controls',
+        image: '/lovable-uploads/04c5864d-e3d7-4593-98eb-265aaf811b27.png',
         hasVideo: false
       },
       {
