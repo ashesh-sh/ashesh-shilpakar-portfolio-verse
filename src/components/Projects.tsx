@@ -1,6 +1,8 @@
 
 import { motion } from 'framer-motion';
-import { Gamepad2, Smartphone, GraduationCap, ExternalLink } from 'lucide-react';
+import { Gamepad2, Smartphone, GraduationCap, ExternalLink, X, Play } from 'lucide-react';
+import { useState } from 'react';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 const projects = [
   {
@@ -9,7 +11,21 @@ const projects = [
     icon: Gamepad2,
     color: 'from-cyber-blue to-blue-500',
     link: '#vr-projects',
-    tags: ['VR', 'Unity', '3D', 'Immersive']
+    tags: ['VR', 'Unity', '3D', 'Immersive'],
+    details: [
+      {
+        title: 'Virtual Reality Escape Room',
+        description: 'An immersive escape room experience with physics-based puzzles and hand tracking.',
+        image: '/lovable-uploads/06441f01-1582-4cdb-9ab7-2a6c8a7b7dfc.png',
+        hasVideo: true
+      },
+      {
+        title: 'VR Flight Simulator',
+        description: 'Realistic flight simulation with haptic feedback and spatial audio.',
+        image: '/lovable-uploads/ac34c3b5-5cb2-4903-836f-ddd0b4c53a86.png',
+        hasVideo: false
+      }
+    ]
   },
   {
     title: 'AR Mini Games', 
@@ -17,7 +33,21 @@ const projects = [
     icon: Smartphone,
     color: 'from-neon-purple to-purple-500',
     link: '#ar-games',
-    tags: ['AR', 'Mobile', 'Spatial', 'Real-world']
+    tags: ['AR', 'Mobile', 'Spatial', 'Real-world'],
+    details: [
+      {
+        title: 'AR Pet Companion',
+        description: 'Virtual pet that interacts with your real environment using advanced AR tracking.',
+        image: '/lovable-uploads/3cb44c36-47ff-4cc2-a0f1-49f9b5c07213.png',
+        hasVideo: true
+      },
+      {
+        title: 'AR Treasure Hunt',
+        description: 'Location-based treasure hunting game with real-world clues and AR rewards.',
+        image: '/lovable-uploads/06441f01-1582-4cdb-9ab7-2a6c8a7b7dfc.png',
+        hasVideo: false
+      }
+    ]
   },
   {
     title: 'Educational Games',
@@ -25,7 +55,21 @@ const projects = [
     icon: GraduationCap,
     color: 'from-electric-green to-green-500',
     link: '#educational-games',
-    tags: ['Education', 'WebGL', 'Learning', 'Interactive']
+    tags: ['Education', 'WebGL', 'Learning', 'Interactive'],
+    details: [
+      {
+        title: 'Math Adventure Quest',
+        description: 'WebGL-based adventure game that teaches mathematics through interactive challenges.',
+        image: '/lovable-uploads/ac34c3b5-5cb2-4903-836f-ddd0b4c53a86.png',
+        hasVideo: true
+      },
+      {
+        title: 'Science Lab Simulator',
+        description: 'Virtual laboratory environment for conducting safe chemistry experiments.',
+        image: '/lovable-uploads/3cb44c36-47ff-4cc2-a0f1-49f9b5c07213.png',
+        hasVideo: false
+      }
+    ]
   },
   {
     title: 'Mobile Games',
@@ -33,7 +77,33 @@ const projects = [
     icon: Smartphone,
     color: 'from-neo-pink to-pink-500',
     link: '#mobile-games',
-    tags: ['Mobile', 'Board Games', 'Strategy', 'Classic']
+    tags: ['Mobile', 'Board Games', 'Strategy', 'Classic'],
+    details: [
+      {
+        title: 'Chess Master',
+        description: 'Advanced chess game with AI opponents, online multiplayer, and puzzle modes.',
+        image: '/lovable-uploads/06441f01-1582-4cdb-9ab7-2a6c8a7b7dfc.png',
+        hasVideo: false
+      },
+      {
+        title: 'Ludo Championship',
+        description: 'Classic Ludo game with modern graphics, tournaments, and social features.',
+        image: '/lovable-uploads/ac34c3b5-5cb2-4903-836f-ddd0b4c53a86.png',
+        hasVideo: true
+      },
+      {
+        title: 'Callbreak Pro',
+        description: 'Strategic card game with AI players, tournaments, and achievement system.',
+        image: '/lovable-uploads/3cb44c36-47ff-4cc2-a0f1-49f9b5c07213.png',
+        hasVideo: false
+      },
+      {
+        title: 'Snake & Ladder Deluxe',
+        description: 'Enhanced version of the classic board game with power-ups and themes.',
+        image: '/lovable-uploads/06441f01-1582-4cdb-9ab7-2a6c8a7b7dfc.png',
+        hasVideo: false
+      }
+    ]
   }
 ];
 
@@ -91,14 +161,49 @@ export function Projects() {
                   ))}
                 </div>
 
-                <motion.a
-                  href={project.link}
-                  className="inline-flex items-center gap-2 text-cyber-blue hover:text-white transition-colors font-semibold"
-                  whileHover={{ x: 5 }}
-                >
-                  View Projects
-                  <ExternalLink className="w-4 h-4" />
-                </motion.a>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <motion.button
+                      className="inline-flex items-center gap-2 text-cyber-blue hover:text-white transition-colors font-semibold"
+                      whileHover={{ x: 5 }}
+                    >
+                      View Projects
+                      <ExternalLink className="w-4 h-4" />
+                    </motion.button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-96 max-h-96 overflow-y-auto bg-gray-900/95 backdrop-blur-sm border-gray-700 z-50">
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <h4 className="text-lg font-semibold text-white">{project.title}</h4>
+                      </div>
+                      
+                      <div className="space-y-4">
+                        {project.details.map((detail, detailIndex) => (
+                          <div key={detailIndex} className="border border-gray-700 rounded-lg p-4 bg-gray-800/50">
+                            <div className="flex gap-4">
+                              <div className="relative w-20 h-20 flex-shrink-0">
+                                <img
+                                  src={detail.image}
+                                  alt={detail.title}
+                                  className="w-full h-full object-cover rounded-lg"
+                                />
+                                {detail.hasVideo && (
+                                  <div className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-lg">
+                                    <Play className="w-6 h-6 text-white" />
+                                  </div>
+                                )}
+                              </div>
+                              <div className="flex-1">
+                                <h5 className="text-white font-semibold mb-2">{detail.title}</h5>
+                                <p className="text-gray-400 text-sm leading-relaxed">{detail.description}</p>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </PopoverContent>
+                </Popover>
               </div>
             </motion.div>
           ))}
