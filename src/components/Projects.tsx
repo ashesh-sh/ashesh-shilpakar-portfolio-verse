@@ -55,7 +55,7 @@ const projects = [
       {
         title: 'BasketBall AR',
         description: 'Interactive basketball shooting game in augmented reality',
-        image: '/lovable-uploads/a8f708f6-7564-4d62-879a-f12b0d7ae4cf.png',
+        image: '/lovable-uploads/04c5864d-e3d7-4593-98eb-265aaf811b27.png',
         hasVideo: false
       },
       {
@@ -67,7 +67,7 @@ const projects = [
       {
         title: 'Fruits Ninja AR',
         description: 'Slice fruits in augmented reality with gesture controls',
-        image: '/lovable-uploads/04c5864d-e3d7-4593-98eb-265aaf811b27.png',
+        image: '/lovable-uploads/a8f708f6-7564-4d62-879a-f12b0d7ae4cf.png',
         hasVideo: false
       },
       {
