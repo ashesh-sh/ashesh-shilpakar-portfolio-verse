@@ -14,14 +14,14 @@ const projects = [
     tags: ['VR', 'Unity', '3D', 'Immersive'],
     details: [
       {
-        title: 'Virtual Reality Escape Room',
-        description: 'An immersive escape room experience with physics-based puzzles and hand tracking.',
+        title: 'VR Battleship - Multiplayer',
+        description: 'VR multiplayer battle ship game built using Unity and Photon. Learnt about multiplayer game development, AI programming and optimization tricks for VR.',
         image: '/lovable-uploads/06441f01-1582-4cdb-9ab7-2a6c8a7b7dfc.png',
         hasVideo: true
       },
       {
-        title: 'VR Flight Simulator',
-        description: 'Realistic flight simulation with haptic feedback and spatial audio.',
+        title: 'Shelter in Place',
+        description: 'Shelter in Place is an open-ended virtual reality game in which users are stuck indefinitely in a virtual mansion. With no escape, the only thing for the player to do is explore more than 15 rooms containing mini-games that can provide hours of entertainment for all interests and ages.',
         image: '/lovable-uploads/ac34c3b5-5cb2-4903-836f-ddd0b4c53a86.png',
         hasVideo: false
       }
@@ -108,6 +108,8 @@ const projects = [
 ];
 
 export function Projects() {
+  const [openPopover, setOpenPopover] = useState<string | null>(null);
+
   return (
     <section id="projects" className="section-padding bg-gradient-to-b from-transparent to-black/20">
       <div className="max-w-6xl mx-auto">
@@ -161,47 +163,78 @@ export function Projects() {
                   ))}
                 </div>
 
-                <Popover>
+                <Popover open={openPopover === project.title} onOpenChange={(open) => setOpenPopover(open ? project.title : null)}>
                   <PopoverTrigger asChild>
                     <motion.button
                       className="inline-flex items-center gap-2 text-cyber-blue hover:text-white transition-colors font-semibold"
-                      whileHover={{ x: 5 }}
+                      whileHover={{ x: 5, scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                     >
                       View Projects
                       <ExternalLink className="w-4 h-4" />
                     </motion.button>
                   </PopoverTrigger>
-                  <PopoverContent className="w-96 max-h-96 overflow-y-auto bg-gray-900/95 backdrop-blur-sm border-gray-700 z-50">
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <h4 className="text-lg font-semibold text-white">{project.title}</h4>
+                  <PopoverContent 
+                    className="w-[520px] max-h-[600px] overflow-y-auto bg-gray-900/95 backdrop-blur-xl border-gray-700 z-50 shadow-2xl"
+                    align="center"
+                    sideOffset={10}
+                  >
+                    <motion.div 
+                      initial={{ opacity: 0, scale: 0.9, y: -20 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.9, y: -20 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      className="space-y-6"
+                    >
+                      <div className="flex items-center justify-between sticky top-0 bg-gray-900/95 backdrop-blur-xl pb-4 border-b border-gray-700">
+                        <h4 className="text-xl font-bold text-white">{project.title}</h4>
+                        <motion.button
+                          whileHover={{ scale: 1.1, rotate: 90 }}
+                          whileTap={{ scale: 0.9 }}
+                          onClick={() => setOpenPopover(null)}
+                          className="p-2 rounded-full hover:bg-gray-800 text-gray-400 hover:text-white transition-colors"
+                        >
+                          <X className="w-5 h-5" />
+                        </motion.button>
                       </div>
                       
-                      <div className="space-y-4">
+                      <div className="space-y-6">
                         {project.details.map((detail, detailIndex) => (
-                          <div key={detailIndex} className="border border-gray-700 rounded-lg p-4 bg-gray-800/50">
-                            <div className="flex gap-4">
-                              <div className="relative w-20 h-20 flex-shrink-0">
+                          <motion.div 
+                            key={detailIndex} 
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.4, delay: detailIndex * 0.1 }}
+                            className="border border-gray-700 rounded-xl p-6 bg-gray-800/50 hover:bg-gray-800/70 transition-all duration-300 hover:border-cyan-400/30"
+                          >
+                            <div className="flex gap-6">
+                              <motion.div 
+                                whileHover={{ scale: 1.05 }}
+                                className="relative w-24 h-24 flex-shrink-0"
+                              >
                                 <img
                                   src={detail.image}
                                   alt={detail.title}
-                                  className="w-full h-full object-cover rounded-lg"
+                                  className="w-full h-full object-cover rounded-lg shadow-lg"
                                 />
                                 {detail.hasVideo && (
-                                  <div className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-lg">
-                                    <Play className="w-6 h-6 text-white" />
-                                  </div>
+                                  <motion.div 
+                                    whileHover={{ scale: 1.1 }}
+                                    className="absolute inset-0 flex items-center justify-center bg-black/60 rounded-lg cursor-pointer"
+                                  >
+                                    <Play className="w-8 h-8 text-cyan-400" />
+                                  </motion.div>
                                 )}
-                              </div>
+                              </motion.div>
                               <div className="flex-1">
-                                <h5 className="text-white font-semibold mb-2">{detail.title}</h5>
-                                <p className="text-gray-400 text-sm leading-relaxed">{detail.description}</p>
+                                <h5 className="text-white font-bold text-lg mb-3">{detail.title}</h5>
+                                <p className="text-gray-300 leading-relaxed">{detail.description}</p>
                               </div>
                             </div>
-                          </div>
+                          </motion.div>
                         ))}
                       </div>
-                    </div>
+                    </motion.div>
                   </PopoverContent>
                 </Popover>
               </div>
