@@ -1,7 +1,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { Glasses, Smartphone, GraduationCap, ExternalLink, X, Play } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const projects = [
   {
@@ -169,9 +169,22 @@ export function Projects() {
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
   const [hoveredImageIndex, setHoveredImageIndex] = useState<{[key: string]: number}>({});
   const [hoverIntervals, setHoverIntervals] = useState<{[key: string]: NodeJS.Timeout}>({});
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleProjectClick = (projectTitle: string) => {
+    const isOpening = selectedProject !== projectTitle;
     setSelectedProject(selectedProject === projectTitle ? null : projectTitle);
+    
+    // Scroll to dropdown section when opening
+    if (isOpening) {
+      setTimeout(() => {
+        dropdownRef.current?.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start',
+          inline: 'nearest'
+        });
+      }, 100); // Small delay to ensure the dropdown is rendered
+    }
   };
 
   const selectedProjectData = projects.find(p => p.title === selectedProject);
@@ -311,6 +324,7 @@ export function Projects() {
         <AnimatePresence mode="wait">
           {selectedProject && selectedProjectData && (
             <motion.div
+              ref={dropdownRef}
               initial={{ opacity: 0, height: 0, y: -20 }}
               animate={{ opacity: 1, height: 'auto', y: 0 }}
               exit={{ opacity: 0, height: 0, y: -20 }}
