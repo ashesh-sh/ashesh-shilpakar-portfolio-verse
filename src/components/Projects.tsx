@@ -1,13 +1,13 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { Gamepad2, Smartphone, GraduationCap, ExternalLink, X, Play } from 'lucide-react';
+import { Glasses, Smartphone, GraduationCap, ExternalLink, X, Play } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 const projects = [
   {
     title: 'VR Projects',
     description: 'Immersive virtual reality experiences showcasing advanced VR mechanics, spatial interactions, and cutting-edge VR technology.',
-    icon: Gamepad2,
+    icon: Glasses,
     color: 'from-cyber-blue to-blue-500',
     link: '#vr-projects',
     tags: ['VR', 'Unity', '3D', 'Immersive'],
